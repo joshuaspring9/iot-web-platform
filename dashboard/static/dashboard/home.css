@@ -1,0 +1,16 @@
+#topbar{
+    display:flex;
+    flex-direction:row;
+    font-size: 16pt;
+    justify-content:center;
+}
+#user-profile {
+    font-size: 12pt;
+}
+#navbar{
+    display:flex;
+    flex-direction:row;
+    margin:20pt;
+    justify-content:space-between;
+
+}
