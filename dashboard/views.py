@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 
@@ -8,7 +9,7 @@ from django.views import generic
 
 
 class SignUp(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'dashboard/signup.html'
     
