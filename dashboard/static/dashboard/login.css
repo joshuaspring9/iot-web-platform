@@ -1,0 +1,16 @@
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+body {
+  background: #808080; 
+  background: -webkit-linear-gradient(right, #808080, #778899);
+  background: -moz-linear-gradient(right, #808080, #778899);
+  background: -o-linear-gradient(right, #808080,#778899);
+  background: linear-gradient(left, #808080,#778899);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
