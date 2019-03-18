@@ -1,5 +1,5 @@
 {% extends 'dashboard/base.html' %}
-{% load static %}
+{% load static account %}
 
 {% block title %}Home{% endblock %}
 
@@ -20,7 +20,7 @@
     </div>
     <div id="user-profile">
         {% if user.is_authenticated %}
-        Hi {{ user.username }}!
+        Hi {% user_display user %}!
         <p><a href="{% url 'account_logout' %}">logout</a></p>
         <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
         {% else %}
