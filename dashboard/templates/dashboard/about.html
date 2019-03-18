@@ -1,0 +1,24 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block header %}
+<link rel = "stylesheet" href="{% static 'dashboard/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<ul>
+    <li><a class="active" href="{% url 'dashboard:home' %}">Home</a></li>
+    <li><a href="#news">News</a></li>
+</ul>
+
+<div class = "paragraph">
+    We are the IoT intrusion detection team for Steven's CS-347 course. Our group is focused on collecting data on several IoT devices
+    such as the Amazon Alexa and testing with several different profiles. This website should have graphs displaying where intrusions occur
+    and displaying normal behavior
+</div>
+
+<img src = "Code Blooded Image.jpeg" class = "image">
+
+{% endblock %}
