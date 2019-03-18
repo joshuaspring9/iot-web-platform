@@ -146,3 +146,9 @@ ACCOUNT_FORMS = {
     'login': 'dashboard.forms.CustomAuthForm',
     'signup': 'dashboard.forms.CustomUserCreationForm'
 }
+
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
