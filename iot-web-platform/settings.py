@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth', 
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +132,17 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'pages:home'
 LOGOUT_REDIRECT_URL = 'pages:home'
 AUTH_USER_MODEL = 'dashboard.CustomUser'
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_FORMS = {
+    'login': 'dashboard.forms.CustomAuthForm',
+    'signup': 'dashboard.forms.CustomUserCreationForm'
+}

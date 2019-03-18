@@ -1,7 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 
-{% block title %}Log In{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
 {% block header %}
 <link rel = "stylesheet" href="{% static 'dashboard/login.css' %}">
@@ -12,13 +12,13 @@
 <div class="login-page">
 
   <div class="form">
-    <h2>Login</h2>
-    <form class="login-form" method="post">
+    <h2>Create an Account</h2>
+    <form class="register-form" method="post" >
       {% csrf_token %}
       {{form.as_p}}
-      <button type="submit">login</button>
+      <button type="submit">create</button>
     </form>
-    <p>Need an account? <a href="{% url 'dashboard:signup' %}">Sign up</a></p>
+    <p>Already have an account? <a href="{% url 'account_login' %}">Log In</a></p>
   </div>
 </div>
 {% endblock %}
