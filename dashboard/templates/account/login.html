@@ -1,7 +1,5 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
-{% load socialaccount %}
-{% get_providers as socialaccount_providers %}
 
 
 {% block title %}Log In{% endblock %}
@@ -21,7 +19,7 @@
       {{form.as_p}}
       <button type="submit">login</button>
     </form>
-    <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     <p>Need an account? <a href="{% url 'account_signup' %}">Sign up</a></p>
   </div>
 </div>
