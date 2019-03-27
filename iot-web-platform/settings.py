@@ -77,20 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'iot-web-platform.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_dashboard',
-        'USER': 'django',
-        'PASSWORD': 'Ilikepython',
-        'HOST': 'localhost',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -149,6 +135,6 @@ ACCOUNT_FORMS = {
 
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
