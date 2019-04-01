@@ -1,6 +1,7 @@
 .vscode
 .DS_Store
 local-settings.py
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
