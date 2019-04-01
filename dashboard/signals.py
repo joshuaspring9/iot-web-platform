@@ -3,8 +3,8 @@ from django.dispatch import receiver
 from .models import UserProfile
 
 @receiver(user_signed_up)
-def social_login_set_profilepic(request, sociallogin, user, **kwargs):
-    if sociallogin.account.provider == 'google':
-        picture_url = sociallogin.account.extra_data['picture']
-        profile = UserProfile(user=user, avatar_url=picture_url)
+def social_login_set_profilepic(sender, **kwargs):
+    if 'sociallogin' in kwargs and 'user' in kwargs and kwargs['sociallogin'].account.provider == 'google':
+        picture_url = kwargs['sociallogin'].account.extra_data['picture']
+        profile = UserProfile(user=kwargs['user'], avatar_url=picture_url)
         profile.save()
