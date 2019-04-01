@@ -3,7 +3,7 @@ The web platform component for the IOT Intrusion Detection System.
 ## Requirements
 Run the following command to install dependencies:
 ```python
-pip install django-allauth pillow
+pip install django-allauth pillow djangorestframework
 ```
 You will also need a local installation of a MySQL server to host the database. 
 ## Prerequisites
