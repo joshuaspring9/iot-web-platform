@@ -41,7 +41,6 @@ class UserProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['profile_image'].required = True
-        self.fields['profile_image'].upload_to = 'profile_pictures/'
 
     class Meta:
         model = UserProfile
