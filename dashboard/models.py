@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, primary_key=True, verbose_name='user', related_name='profile', on_delete=models.CASCADE)
     avatar_url = models.CharField(max_length=256, blank=True, null=True)
-    profile_image = models.ImageField(blank=True, null=True, upload_to="media/profile-pictures")
+    profile_image = models.ImageField(blank=True, null=True, upload_to="profile-pictures")
 
     def has_profile_image(self):
         return self.profile_image != ""
