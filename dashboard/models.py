@@ -16,10 +16,10 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(blank=True, null=True, upload_to="media/profile-pictures")
 
     def has_profile_image(self):
-        return not self.profile_image == ""
+        return self.profile_image != ""
 
     def has_avatar_url(self):
-        return not self.avatar_url == ""
+        return self.avatar_url != ""
 
     def get_absolute_url(self):
         return reverse('dashboard:profilepic')
