@@ -14,7 +14,7 @@ python3 manage.py migrate
 ## Running the development server
 From the project's root directory:
 ```python
-python3 manager.py runserver
+python3 manage.py runserver
 ```
 ## Updating models
 Every time you update a model in `models.py`, you will need to update the database structure with:
