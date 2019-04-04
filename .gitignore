@@ -1,6 +1,8 @@
 .vscode
 .DS_Store
 local-settings.py
+media/*
+!media/.gitkeep 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
