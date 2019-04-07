@@ -29,3 +29,10 @@ class UserProfile(models.Model):
 
     class Meta():
         db_table = 'user_profile'
+
+class MachineData(models.Model):
+	title = models.TextField()
+	file = models.FileField(upload_to='files/')
+
+	def __str__(self):
+		return self.title
