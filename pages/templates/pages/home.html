@@ -28,6 +28,8 @@
                 {% elif user.profile.has_avatar_url %}
                     <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
                 {% endif %}
+            {% else %}
+                <img class="profile-pic" src="{% static 'pages/generic_user.png' %}" />
             {% endif %}
         {% else %}
         <p>You are not logged in</p>
