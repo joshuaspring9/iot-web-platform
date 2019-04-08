@@ -22,7 +22,13 @@
         {% if user.is_authenticated %}
         Hi {% user_display user %}!
         <p><a href="{% url 'account_logout' %}">logout</a></p>
-        <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
+            {% if user.profile %}
+                {% if user.profile.has_profile_image %}
+                    <img class="profile-pic" src="{{ user.profile.profile_image.url }}" />
+                {% elif user.profile.has_avatar_url %}
+                    <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
+                {% endif %}
+            {% endif %}
         {% else %}
         <p>You are not logged in</p>
         <a href="{% url 'account_login' %}">login</a>
