@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from dashboard.models import CustomUser
+from dashboard.models import CustomUser, UserProfile
 from .models import DataFile
 from rest_framework import viewsets
-from .serializers import UserSerializer, DataFileSerializer
+from .serializers import UserSerializer, UserProfileSerializer, DataFileSerializer
 
 # Create your views here.
 
