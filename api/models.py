@@ -8,7 +8,7 @@ class DataFile(models.Model):
     # TODO: implement stricter file validation
     data_file = models.FileField(upload_to='media/data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
     processed = models.BooleanField()
-    processed_file = models.FileField(upload_to='media/data-files')
+    processed_file = models.FileField(upload_to='media/data-files', validators=[FileExtensionValidator(allowed_extensions=['txt'])])
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
 
