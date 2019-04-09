@@ -7,7 +7,7 @@ do
     read -p "Do you want to rerun the setup? [Y/n] " yn
     case $yn in
         [yY]* ) echo Resetting
-                chmod 0700 $FILE
+                [ -f FILE ] && chmod 0700 $FILE
                 mysql_config_editor remove --login-path=django
                 break
                 ;;
