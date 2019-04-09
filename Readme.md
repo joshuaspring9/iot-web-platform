@@ -1,9 +1,9 @@
 # IOT Web Platform
 The web platform component for the IOT Intrusion Detection System.
 ## Members
-joshuaspring9 is Joshua Zeitlinger
-vpilly is Varun Pilly
-jslavens99 is Jake SLavens
+joshuaspring9 is Joshua Zeitlinger  
+vpilly is Varun Pilly  
+jslavens99 is Jake Slavens  
 kzambrow is Kamil Zambrowski
 ## Requirements
 Run the following command to install dependencies:
