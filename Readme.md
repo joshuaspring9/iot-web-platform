@@ -25,3 +25,14 @@ followed by
 ```python
 python3 manage.py migrate
 ```
+
+## Resetting Database
+To reset the database, run the following command:
+```bash
+bash reset.sh
+```
+
+To reset your login information, run the following command:
+```bash
+bash setup.sh
+```

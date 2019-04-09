@@ -1,5 +1,6 @@
 .vscode
 .DS_Store
+.djangosql
 local-settings.py
 media/*
 !media/.gitkeep 
