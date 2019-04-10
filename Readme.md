@@ -45,7 +45,7 @@ followed by
 python3 manage.py migrate
 ```
 
-## Resetting Database
+## Bash Commands
 To reset the user login database, run the following command:
 ```bash
 bash reset.sh
