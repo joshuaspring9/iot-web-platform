@@ -6,15 +6,19 @@ vpilly is Varun Pilly
 jslavens99 is Jake Slavens  
 kzambrow is Kamil Zambrowski
 ## Requirements
-Run the following command to install dependencies:
+You will need a local installation of Python 3 as well as a [MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04) server to host the database.
+
+Run the following commands to install Django and some dependencies:
+```python
+pip3 install Django
+```
 ```python
 pip3 install django-allauth pillow
 ```
-You will also need a local installation of Python 3 as well as a MySQL server to host the database. 
 ## Prerequisites
 Local, configuration-specific settings like database credentials should be placed in `iot-intrusion-detection/local_settings.py`, which is included in `settings.py` and not part of version control.  A default version is specified at `iot-intrusion-detection/local_settings_dist.py` which you can rename to `local_settings.py`.  After you have specified the database credentials, you will need to populate the database structure with:
-```python
-python3 manage.py migrate
+```bash
+bash reset.sh
 ```
 ## Running the development server
 From the project's root directory:
