@@ -4,7 +4,8 @@ from django.shortcuts import render
 
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import CustomUserCreationForm, UserProfileForm
 from .models import UserProfile
@@ -15,7 +16,11 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'dashboard/signup.html'
 
-class UpdateProfilePic(generic.UpdateView, LoginRequiredMixin, SuccessMessageMixin):
+class UpdateProfilePic(generic.UpdateView, SuccessMessageMixin):
+    '''
+    A view to update the profile picture.  Functions as an update or create,
+    depending on whether a user profile exists or not.
+    '''
     def get_object(self, queryset=None):
         try:
             return self.request.user.profile
@@ -35,7 +40,18 @@ class UpdateProfilePic(generic.UpdateView, LoginRequiredMixin, SuccessMessageMix
         form.instance.avatar_url = self.request.user.profile.avatar_url
         return super().form_valid(form)
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     model = UserProfile
     form_class = UserProfileForm
     template_name = 'dashboard/update_profile_pic.html'
     success_message = "Profile picture successfully updated!"
+
+class DashboardView(generic.TemplateView):
+    '''
+    Same as a template view, but requires a logged in user to render
+    '''
+    login_required = True
+    template_name = 'dashboard/home.html'

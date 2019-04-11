@@ -1,0 +1,45 @@
+#topbar{
+
+     margin:20pt;
+     display: flex;
+     flex-flow:row nowrap;
+     justify-content: space-between;
+     width: 75%;
+     border-style: solid;
+}
+#navbar{
+
+     margin:20pt;
+     padding: 5pt;
+
+}
+#profileMenu{
+     height:auto;
+     width: auto;
+     margin: 5pt;
+}
+
+#deviceList{
+     border-style: solid;
+     height: 800pt;
+     width: 600pt;
+}
+
+#plus{
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     border-style: solid;
+     border-radius: 50%
+
+}
+
+body {
+  background: #808080; 
+  background: -webkit-linear-gradient(right, #808080, #778899);
+  background: -moz-linear-gradient(right, #808080, #778899);
+  background: -o-linear-gradient(right, #808080,#778899);
+  background: linear-gradient(left, #808080,#778899);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
