@@ -26,7 +26,7 @@ bash reset.sh s
 
 ### Manual Setup ###
 
-This section is only necessary if you do not want to use the automated script above. Copy the contents of local_settings_dist.py to a new file named local_settings.py. In local_settings.py, change the word undefined to your mysql user and the word unique to your mysql password (Warning do not edit local_settings_dist.py or you may break the automatic setup). To populate the database run the following commands:
+This section is only necessary if you do not want to use the automated script above. Copy the contents of `local_settings_dist.py` to a new file named `local_settings.py`. In `local_settings.py`, change the word undefined to your mysql user and the word unique to your mysql password (Warning do not edit `local_settings_dist.py` or you may break the automatic setup). To populate the database run the following commands:
     
 ```bash
 mysql -u root -p <<EOF
