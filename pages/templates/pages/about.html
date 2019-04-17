@@ -5,20 +5,21 @@
 
 {% block header %}
 <link rel = "stylesheet" href="{% static 'pages/about.css' %}">
+<link rel = "stylesheet" href="{% static 'pages/lstyle.css' %}">
 {% endblock %}
 
 {% block content %}
-<ul>
-    <li><a class="active" href="{% url 'pages:home' %}">Home</a></li>
-    <li><a href="#news">News</a></li>
-</ul>
-
-<div class = "paragraph">
-    We are the IoT intrusion detection team for Steven's CS-347 course. Our group is focused on collecting data on several IoT devices
-    such as the Amazon Alexa and testing with several different profiles. This website should have graphs displaying where intrusions occur
-    and displaying normal behavior
+<div id="header" align="center">
+     <h1>About Us!</h1>
+     {% include 'pages/topbar.html' %}
 </div>
-
-<img src = "Code Blooded Image.jpeg" class = "image">
-
+<br>
+<div class="paragraph">
+     We are the IoT intrusion detection team for Steven's CS-347 course. Our group is focused on collecting data on several IoT devices
+     such as the Amazon Alexa and testing with several different profiles. This website should have graphs displaying where intrusions occur
+     and displaying normal behavior.
+</div>
+<br>
+<img src = "{% static 'pages/CodeBlooded.jpeg' %}"  class = "image center">
+</div>
 {% endblock %}
