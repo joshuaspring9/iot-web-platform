@@ -7,8 +7,9 @@ class SmartHomeDevice(models.Model):
     Class to represent a smart home device.  Used with data files to represent the devices captured.
     '''
 
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=75)
     image = models.ImageField(blank=True, null=True, upload_to="device-pictures")
+    description = models.CharField(max_length=256, blank=True, null=True)
 
     def has_device_image(self):
         return self.image != ""
