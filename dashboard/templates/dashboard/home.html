@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html' %}
+{% load static account %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+<link rel = "stylesheet" href="{% static 'pages/lstyle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id = "header" align = "center">
+    <div class="title">
+        <h1>Code Blooded Intrusion Detection </h1>
+        <div class="profile-container">
+            <div class="username">
+                Hi {% user_display user %}!
+                <p><a href="{% url 'account_logout' %}">logout</a></p>
+            </div>
+            <div>
+                {% if user.profile %}
+                    {% if user.profile.has_profile_image %}
+                        <img class="profile-pic" src="{{ user.profile.profile_image.url }}" />
+                    {% elif user.profile.has_avatar_url %}
+                        <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
+                    {% endif %}
+                {% else %}
+                    <img class="profile-pic" src="{% static 'pages/generic_user.png' %}" />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% include 'pages/topbar.html' %}
+</div>
+        <div class="login-page">
+            <div class="center">
+                <div class="center">
+                    <p>Graph implementation in progress</p>
+                </div>
+            </div>
+        </div>
+
+
+ {% endblock %}
+
