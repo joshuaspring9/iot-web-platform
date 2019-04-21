@@ -6,6 +6,6 @@ from . import views
 
 app_name = 'dashboard'
 urlpatterns = [
-    path('signup/', views.SignUp.as_view(), name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='dashboard/login.html', authentication_form=CustomAuthForm), name='login'),
+    path('accounts/profile/picture/', views.UpdateProfilePic.as_view(), name='profilepic'),
+    path('dashboard/', views.DashboardView.as_view(), name='home')
 ]

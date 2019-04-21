@@ -11,8 +11,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_dashboard',
-        'USER': 'django',
-        'PASSWORD': 'Ilikepython',
+        'USER': 'undefined',
+        'PASSWORD': 'unique',
         'HOST': 'localhost',
     }
 }

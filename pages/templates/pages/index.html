@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% load static account %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+<link rel = "stylesheet" href="{% static 'pages/lstyle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id = "header" align = "center">
+  <h1>Code Blooded Intrusion Detection </h1>   
+  {% include 'pages/topbar.html' %}
+  <div id = "deviceList" align="center">
+    <h3>Please login to add devices</h3>
+    <img src="{% static 'pages/construction.png' %}"/>
+  </div>
+</div>
+
+
+
+{% endblock %}

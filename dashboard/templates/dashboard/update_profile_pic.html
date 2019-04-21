@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block title %}Log In{% endblock %}
+
+{% block header %}
+<link rel = "stylesheet" href="{% static 'dashboard/login.css' %}">
+{{form.media}}
+{% endblock %}
+
+{% block content %}
+<div class="login-page">
+
+  <div class="form" >
+    <h2>Update Profile Picture</h2>
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <p>{{ message }}</p>
+    {% endif %}
+    {% endfor %}
+    <form class="login-form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
