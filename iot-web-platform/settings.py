@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'oauth2_provider',
     'rest_framework',
     'allauth', 
     'allauth.account',
@@ -144,7 +145,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissions',
         'rest_framework.permissions.IsAdminUser'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
