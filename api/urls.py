@@ -11,5 +11,6 @@ router.register(r'datafiles', views.DataFileViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('auth/', include('rest_framework.urls', namespace='django_rest_framework'))
+    path('auth/', include('rest_framework.urls', namespace='django_rest_framework')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
