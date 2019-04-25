@@ -17,3 +17,12 @@ class UserProfileTestCase(TestCase):
         self.assertEqual(profile.has_profile_image(), False)
         self.assertEqual(profile.has_avatar_url(), True)
         self.assertEqual(str(profile), "test@test.com")
+class HomePageTests(TestCase):
+    def test_home_page_status_code(self):
+        response = self.client.get('/')
+        self.assertEquals(response.status_code, 200)
+
+    def test_check_incorrect(self):
+        response = self.client.get('/')
+        self.assertNotContains(
+            response, 'This should not happen')
