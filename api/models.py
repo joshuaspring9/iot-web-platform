@@ -35,13 +35,5 @@ class DataFile(models.Model):
     def is_processed(self):
         return self.processed
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if self.data_file_hash == '':
-            import hashlib
-            self.data_file_hash = hashlib.md5(self.data_file)
-        super().save(force_insert, force_update, using,
-             update_fields)
-
     def __str__(self):
         return "File Name: " + self.data_file + " Start Time: " + self.start_time + " End Time: " + self.end_time
