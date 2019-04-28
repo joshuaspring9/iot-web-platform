@@ -36,4 +36,4 @@ class DataFile(models.Model):
         return self.processed
 
     def __str__(self):
-        return "File Name: " + self.data_file + " Start Time: " + self.start_time + " End Time: " + self.end_time
+        return str(self.data_file)
