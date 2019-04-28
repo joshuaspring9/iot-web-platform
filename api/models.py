@@ -24,11 +24,11 @@ class DataFile(models.Model):
     '''
     # Note that while only PCAP extensions, are allowed, ANY file can be renamed to .pcap and be accepted.
     # TODO: implement stricter file validation
-    data_file = models.FileField(upload_to='media/data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
+    data_file = models.FileField(upload_to='data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
     data_file_hash = models.CharField(max_length=35, unique=True)
     devices_captured = models.ManyToManyField(SmartHomeDevice)
     processed = models.BooleanField()
-    processed_file = models.FileField(upload_to='media/data-files', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['txt'])])
+    processed_file = models.FileField(upload_to='data-files-processed', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['txt'])])
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
 
