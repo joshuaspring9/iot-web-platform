@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'pages.apps.PagesConfig',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'oauth2_provider',
+    'rest_framework',
     'allauth', 
     'allauth.account',
     'allauth.socialaccount',
@@ -129,17 +132,34 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_FORMS = {
     'login': 'dashboard.forms.CustomAuthForm',
     'signup': 'dashboard.forms.CustomUserCreationForm'
 }
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissions',
+        'rest_framework.permissions.IsAdminUser'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
+}
 
 try:
     from .local_settings import *

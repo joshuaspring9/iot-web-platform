@@ -1,0 +1,9 @@
+[
+    {
+      "model": "api.smarthomedevice",
+      "fields": {
+        "name": "Amazon Alexa",
+        "description": "A smart home assistant that responds to your voice commands."
+      }
+    }
+  ]

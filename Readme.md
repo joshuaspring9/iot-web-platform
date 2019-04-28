@@ -13,7 +13,7 @@ Run the following commands to install Django and some of its dependencies:
 pip3 install Django
 ```
 ```python
-pip3 install django-allauth pillow mysqlclient
+pip3 install django-allauth pillow djangorestframework django-oauth-toolkit mysqlclient
 ```
 ## Prerequisites
 Local, configuration-specific settings like database credentials should be placed in `iot-intrusion-detection/local_settings.py`, which is included in `settings.py` and not part of version control. A default version is specified at `iot-intrusion-detection/local_settings_dist.py` which you can rename to `local_settings.py`. After you have specified the database credentials, you will need to populate the database structure.
