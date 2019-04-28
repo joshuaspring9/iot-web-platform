@@ -22,3 +22,17 @@ def populate_datafile_hash(sender, instance, **kwargs):
         for chunk in instance.data_file.chunks():
             sha256_hash.update(chunk)
         instance.data_file_hash = sha256_hash.hexdigest()[:32]
+
+@receiver(post_delete, sender=DataFile)
+def delete_data_file_from_disk(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `DataFile` object is deleted.
+    """
+    import os
+    if instance.processed_file:
+        if os.path.isfile(instance.data_file.path):
+            os.remove(instance.data_file.path)
+    if instance.data_file:
+        if os.path.isfile(instance.data_file.path):
+            os.remove(instance.data_file.path)
