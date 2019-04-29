@@ -18,6 +18,14 @@ class SmartHomeDevice(models.Model):
     def __str__(self):
         return self.name
 
+class DataCapturingDevice(models.Model):
+    """
+    A model to represent a data capturing device deployed in an end-user's home.  Each device has its own OAuth2 application for data submission.
+    """
+    oauth_application = models.OneToOneField(
+        Application,
+        on_delete=models.CASCADE,
+    )
 
 class DataFile(models.Model):
     '''
@@ -28,6 +36,7 @@ class DataFile(models.Model):
     data_file = models.FileField(upload_to='data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
     data_file_hash = models.CharField(max_length=35, unique=True)
     devices_captured = models.ManyToManyField(SmartHomeDevice)
+    data_capturing_device = models.ForeignKey(DataCapturingDevice, on_delete=models.PROTECT)
     processed = models.BooleanField()
     processed_file = models.FileField(upload_to='data-files-processed', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['txt'])])
     start_time = models.DateTimeField(null=True, blank=True)
@@ -38,13 +47,3 @@ class DataFile(models.Model):
 
     def __str__(self):
         return str(self.data_file)
-
-class DataCapturingDevice(models.Model):
-    """
-    A model to represent a data capturing device deployed in an end-user's home.  Each device has its own OAuth2 application for data submission.
-    """
-    oauth_application = models.OneToOneField(
-        Application,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
