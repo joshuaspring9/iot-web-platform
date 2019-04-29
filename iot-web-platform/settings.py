@@ -158,7 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'datafiles': 'Create and update datafiles scope'}
 }
 
 OAUTH2_PROVIDER_ACCESS_TOKEN_MODEL = 'oauth2_provider.AccessToken'
