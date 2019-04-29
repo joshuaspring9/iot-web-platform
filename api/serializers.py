@@ -22,4 +22,4 @@ class DataFileSerializer(serializers.HyperlinkedModelSerializer):
     devices_captured = SmartHomeDeviceSerializer()
     class Meta:
         model = DataFile
-        fields = '__all__'
+        exclude = ('data_file_hash',)
