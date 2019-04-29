@@ -1,4 +1,4 @@
-from .models import DataFile, SmartHomeDevice
+from .models import DataFile, SmartHomeDevice, DataCapturingDevice
 from dashboard.models import CustomUser, UserProfile
 from rest_framework import serializers
 
@@ -18,8 +18,14 @@ class SmartHomeDeviceSerializer(serializers.HyperlinkedModelSerializer):
         model = SmartHomeDevice
         fields = '__all__'
 
+class DataCapturingDeviceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DataCapturingDevice
+        fields = ('id',)
+
 class DataFileSerializer(serializers.HyperlinkedModelSerializer):
-    devices_captured = SmartHomeDeviceSerializer()
+    devices_captured = SmartHomeDeviceSerializer(many=True)
+    data_capturing_device = DataCapturingDeviceSerializer()
     class Meta:
         model = DataFile
         exclude = ('data_file_hash',)

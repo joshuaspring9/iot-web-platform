@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from dashboard.models import CustomUser, UserProfile
-from .models import DataFile, SmartHomeDevice
+from .models import DataFile, SmartHomeDevice, DataCapturingDevice
 from rest_framework import viewsets
-from .serializers import UserSerializer, UserProfileSerializer, DataFileSerializer, SmartHomeDeviceSerializer
+from .serializers import UserSerializer, UserProfileSerializer, DataFileSerializer, SmartHomeDeviceSerializer, DataCapturingDeviceSerializer
 from .permissions import IsAdminOrHasModelPermissionsOrTokenHasScope
 # Create your views here.
 
@@ -22,12 +22,20 @@ class SmartHomeDeviceViewSet(viewsets.ModelViewSet):
     queryset = SmartHomeDevice.objects.all()
     serializer_class = SmartHomeDeviceSerializer
 
+class DataCapturingDeviceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows data capturing devices to be viewed or edited.
+    """
+    permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasScope]
+    queryset = DataCapturingDevice.objects.all()
+    serializer_class = DataCapturingDeviceSerializer
+
 class DataFileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows data files to be viewed or edited.
     """
     permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasScope]
-
+    
     def get_queryset(self):
         queryset = DataFile.objects.all()
         # if the token used represents a device, only show data files uploaded by that device
@@ -35,4 +43,4 @@ class DataFileViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(data_capturing_device=self.request.auth.application.datacapturingdevice)
         return queryset
 
-    serializer_class = DataFileSerializer        
+    serializer_class = DataFileSerializer       
