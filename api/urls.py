@@ -7,7 +7,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'devices', views.SmartHomeDeviceViewSet)
-router.register(r'datafiles', views.DataFileViewSet)
+router.register(r'datafiles', views.DataFileViewSet, basename='datafiles')
 
 
 # OAuth2 provider endpoints

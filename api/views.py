@@ -27,5 +27,12 @@ class DataFileViewSet(viewsets.ModelViewSet):
     API endpoint that allows data files to be viewed or edited.
     """
     permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasScope]
-    queryset = DataFile.objects.all()
-    serializer_class = DataFileSerializer
+
+    def get_queryset(self):
+        queryset = DataFile.objects.all()
+        # if the token used represents a device, only show data files uploaded by that device
+        if hasattr(self.request, 'auth') and hasattr(self.request.auth, "application") and hasattr(self.request.auth.application, "datacapturingdevice") and hasattr(self.request.auth.application, "authorization_grant_type") and self.request.auth.application.authorization_grant_type == "client-credentials":
+            queryset = queryset.filter(data_capturing_device=self.request.auth.application.datacapturingdevice)
+        return queryset
+
+    serializer_class = DataFileSerializer        
