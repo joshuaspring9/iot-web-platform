@@ -2,7 +2,7 @@ from django.contrib import admin
 from .forms import DataFileForm
 
 # Register your models here.
-from .models import DataFile, SmartHomeDevice
+from .models import DataFile, SmartHomeDevice, DataCapturingDevice
 
 class DataFileAdmin(admin.ModelAdmin):
     form = DataFileForm
@@ -13,3 +13,4 @@ class DataFileAdmin(admin.ModelAdmin):
 
 admin.site.register(DataFile, DataFileAdmin)
 admin.site.register(SmartHomeDevice)
+admin.site.register(DataCapturingDevice)
