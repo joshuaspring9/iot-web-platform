@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block header %}
+title>Profile</title>
+
+<h1>Profile</h1>
+<p>Username: {{ user }}</p>
+<p>Email: {{ user.email }}</p>
+
+{% endblock %}

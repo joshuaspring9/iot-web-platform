@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import CustomUserCreationForm, UserProfileForm
 from .models import UserProfile
+from django.contrib.auth.models import User
+
 
 
 class SignUp(generic.CreateView):
@@ -39,3 +41,7 @@ class UpdateProfilePic(generic.UpdateView, LoginRequiredMixin, SuccessMessageMix
     form_class = UserProfileForm
     template_name = 'dashboard/update_profile_pic.html'
     success_message = "Profile picture successfully updated!"
+
+def profile(request):
+    args = {'user': request.user}
+    return render(request, 'accounts/profile.html', args)
