@@ -14,6 +14,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('username', 'email', 'profile')
 
 class SmartHomeDeviceSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
     class Meta:
         model = SmartHomeDevice
         fields = '__all__'
@@ -26,6 +27,7 @@ class DataCapturingDeviceSerializer(serializers.ModelSerializer):
 class DataFileSerializer(serializers.HyperlinkedModelSerializer):
     devices_captured = SmartHomeDeviceSerializer(many=True)
     data_capturing_device = DataCapturingDeviceSerializer()
+    id = serializers.ReadOnlyField()
     class Meta:
         model = DataFile
         exclude = ('data_file_hash',)
