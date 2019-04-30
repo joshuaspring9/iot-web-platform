@@ -14,7 +14,7 @@ def populate_datafile_hash(sender, instance, **kwargs):
     """
     Calculates the hash of the uploaded datafile before saving and populates the respective field in the model, if it hasn't already been populated by the Admin form or API.
     """
-    if sender == DataFile and not instance.data_file_hash:
+    if sender == DataFile and not instance.data_file_hash and instance.data_file:
         print("got here")
         import hashlib
         sha256_hash = hashlib.sha256()
