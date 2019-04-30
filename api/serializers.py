@@ -25,8 +25,6 @@ class DataCapturingDeviceSerializer(serializers.ModelSerializer):
         fields = ('id',)
 
 class DataFileSerializer(serializers.HyperlinkedModelSerializer):
-    devices_captured = SmartHomeDeviceSerializer(many=True)
-    data_capturing_device = DataCapturingDeviceSerializer()
     id = serializers.ReadOnlyField()
     class Meta:
         model = DataFile
