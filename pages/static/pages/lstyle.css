@@ -49,11 +49,15 @@ nav {
     text-align: center;
     
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.center > ul {
+  display: inline-block;
+  text-align: left;
 }
+
+.center > ul > li {
+  padding-top: 10px;
+}
+
 #topbar{
   margin:20pt;
   display: flex;
@@ -83,6 +87,12 @@ ul {
      border-style: solid;
      height: 800pt;
      width: 600pt;
+}
+
+#paragraph{
+  border-style: solid;
+  width: 600pt;
+  padding: 20px;
 }
 
 #plus{
@@ -131,3 +141,11 @@ body {
 .profile-pic {
   width: 100px;
 }
+
+.paragraph {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  width:500px;
+  }

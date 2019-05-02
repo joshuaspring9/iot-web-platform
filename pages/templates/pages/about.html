@@ -1,5 +1,5 @@
 {% extends 'dashboard/base.html' %}
-{% load static %}
+{% load static account %}
 
 {% block title %}About Us{% endblock %}
 
@@ -10,16 +10,38 @@
 
 {% block content %}
 <div id="header" align="center">
-     <h1>About Us!</h1>
+    <div class="title">
+     <h1>About Us</h1>
+     {% if user.is_authenticated %}
+     <div class="profile-container">
+            <div class="username">
+                Hi {% user_display user %}!
+                <p><a href="{% url 'account_logout' %}">logout</a></p>
+            </div>
+            <div>
+                {% if user.profile %}
+                    {% if user.profile.has_profile_image %}
+                        <img class="profile-pic" src="{{ user.profile.profile_image.url }}" />
+                    {% elif user.profile.has_avatar_url %}
+                        <img class="profile-pic" src="{{ user.profile.avatar_url }}" />
+                    {% endif %}
+                {% else %}
+                    <img class="profile-pic" src="{% static 'pages/generic_user.png' %}" />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
      {% include 'pages/topbar.html' %}
 </div>
 <br>
-<div class="paragraph">
+
+<div id="paragraph" class="paragraph">
      We are the IoT intrusion detection team for Steven's CS-347 course. Our group is focused on collecting data on several IoT devices
      such as the Amazon Alexa and testing with several different profiles. This website should have graphs displaying where intrusions occur
      and displaying normal behavior.
-</div>
 <br>
 <img src = "{% static 'pages/CodeBlooded.jpeg' %}"  class = "image center">
+</div>
 </div>
 {% endblock %}
