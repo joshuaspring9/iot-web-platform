@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from dashboard.models import CustomUser, UserProfile
-from .models import DataFile, SmartHomeDevice, DataCapturingDevice
 from rest_framework import viewsets
+from oauth2_provider.contrib.rest_framework.permissions import TokenHasScope
+from .models import DataFile, SmartHomeDevice, DataCapturingDevice
 from .serializers import UserSerializer, UserProfileSerializer, DataFileSerializer, SmartHomeDeviceSerializer, DataCapturingDeviceSerializer
 from .permissions import IsAdminOrHasModelPermissionsOrTokenHasScope, IsAdminOrHasModelPermissionsOrTokenHasRWScope
 # Create your views here.
@@ -18,7 +19,8 @@ class SmartHomeDeviceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows smart home devices to be viewed or edited.
     """
-    permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasRWScope]
+    permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasRWScope|TokenHasScope]
+    required_scopes =  ['devices']
     queryset = SmartHomeDevice.objects.all()
     serializer_class = SmartHomeDeviceSerializer
 
@@ -26,8 +28,8 @@ class DataCapturingDeviceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows data capturing devices to be viewed or edited.
     """
-    permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasScope]
-    required_scopes = ['datafiles']
+    permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasRWScope|TokenHasScope]
+    required_scopes = ['devices']
     queryset = DataCapturingDevice.objects.all()
     serializer_class = DataCapturingDeviceSerializer
 
