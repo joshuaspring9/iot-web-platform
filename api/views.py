@@ -20,7 +20,7 @@ class SmartHomeDeviceViewSet(viewsets.ModelViewSet):
     API endpoint that allows smart home devices to be viewed or edited.
     """
     permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasRWScope|TokenHasScope]
-    required_scopes =  ['devices']
+    required_scopes =  ['datafiles']
     queryset = SmartHomeDevice.objects.all()
     serializer_class = SmartHomeDeviceSerializer
 
@@ -29,7 +29,7 @@ class DataCapturingDeviceViewSet(viewsets.ModelViewSet):
     API endpoint that allows data capturing devices to be viewed or edited.
     """
     permission_classes = [IsAdminOrHasModelPermissionsOrTokenHasRWScope|TokenHasScope]
-    required_scopes = ['devices']
+    required_scopes = ['datafiles']
     queryset = DataCapturingDevice.objects.all()
     serializer_class = DataCapturingDeviceSerializer
 
