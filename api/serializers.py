@@ -19,10 +19,10 @@ class SmartHomeDeviceSerializer(serializers.HyperlinkedModelSerializer):
         model = SmartHomeDevice
         fields = '__all__'
 
-class DataCapturingDeviceSerializer(serializers.ModelSerializer):
+class DataCapturingDeviceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DataCapturingDevice
-        fields = ('id',)
+        exclude = ('oauth_application',)
 
 class DataFileSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
