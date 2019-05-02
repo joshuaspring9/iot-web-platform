@@ -22,6 +22,7 @@ class DataCapturingDevice(models.Model):
     """
     A model to represent a data capturing device deployed in an end-user's home.  Each device has its own OAuth2 application for data submission.
     """
+    name = models.CharField(max_length=30)
     oauth_application = models.OneToOneField(
         Application,
         on_delete=models.CASCADE,
