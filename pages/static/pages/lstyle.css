@@ -58,6 +58,15 @@ nav {
   padding-top: 10px;
 }
 
+.center > ol {
+  display: inline-block;
+  text-align: left;
+}
+
+.center > ol > li {
+  padding-top: 10px;
+}
+
 #topbar{
   margin:20pt;
   display: flex;
