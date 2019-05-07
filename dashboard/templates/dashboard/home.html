@@ -5,6 +5,25 @@
 
 {% block header %}
 <link rel = "stylesheet" href="{% static 'pages/lstyle.css' %}">
+<style>
+  .image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+}
+
+.device{
+  display: flex;
+  flex-direction: row;
+  max-width: 500px;
+}
+.yellow {
+  color:yellow;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -30,15 +49,28 @@
         </div>
     </div>
     {% include 'pages/topbar.html' %}
-</div>
-        <div class="login-page">
-            <div class="center">
-                <div class="center">
-                    <p>Graph implementation in progress</p>
-                </div>
-            </div>
-        </div>
+<div id = "paragraph" align="center">
 
+    {% if data_files %}
+      <h1>The following data captures made on your home network are available for viewing:</h1>
+      <h4>(with the most recent uploads appearing first)</h4>
+      <div class="center">
+      <ol>
+      {% for data_file in data_files %}
+        <li><a href="{% url 'dashboard:datafile_detail' data_file_id=data_file.id %}"> From {{data_file.start_time|default:'Unknown'}} to {{data_file.end_time|default:'Unknown'}}</a></li>
+      {% endfor %}
+      </ol>
+    </div>
+    {% endif %}
+    <div id="loginMessage"></div>
+    <!-- Debug only, manually upload files through webpage with this
+    <input type="file" id="fileUpload" />
+    <input type="button" id="upload" value="Upload" onclick="Upload()" />
+    <hr />-->
+
+
+</div>
+</div>
 
  {% endblock %}
 

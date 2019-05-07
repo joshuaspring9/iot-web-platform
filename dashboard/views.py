@@ -6,9 +6,12 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404, render
 from .forms import CustomUserCreationForm, UserProfileForm
 from .models import UserProfile
+from api.models import DataFile
 
 
 class SignUp(generic.CreateView):
@@ -49,9 +52,38 @@ class UpdateProfilePic(generic.UpdateView, SuccessMessageMixin):
     template_name = 'dashboard/update_profile_pic.html'
     success_message = "Profile picture successfully updated!"
 
-class DashboardView(generic.TemplateView):
-    '''
-    Same as a template view, but requires a logged in user to render
-    '''
-    login_required = True
-    template_name = 'dashboard/home.html'
+@login_required
+def dashboard(request, data_file_id):
+    data_file = get_object_or_404(DataFile, pk=data_file_id)
+
+    dic = {
+            'processed': data_file.processed,
+            'start_time': data_file.start_time,
+            'end_time': data_file.end_time,
+            'devices_captured': data_file.devices_captured,
+        }
+
+
+    if data_file.processed:
+        try:
+            handle = data_file.processed_file.open()
+            contents = handle.read()
+            handle.close()
+        except:
+            contents = ""
+
+        dic['contents'] = contents
+    
+    return render(request, 'dashboard/datafile.html', dic)
+
+@login_required
+def dashboard_list(request):
+    return render(request, 'dashboard/home.html', {
+            'data_files': DataFile.objects.all(),
+        })
+
+class AccountView(LoginRequiredMixin, generic.TemplateView ):
+    """
+    Same as template view, but login is required
+    """
+    template_name = 'dashboard/account.html'

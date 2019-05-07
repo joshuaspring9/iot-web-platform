@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from oauth2_provider.models import Application
 
 # Create your models here.
 class SmartHomeDevice(models.Model):
@@ -17,6 +18,19 @@ class SmartHomeDevice(models.Model):
     def __str__(self):
         return self.name
 
+class DataCapturingDevice(models.Model):
+    """
+    A model to represent a data capturing device deployed in an end-user's home.  Each device has its own OAuth2 application for data submission.
+    """
+    name = models.CharField(max_length=30)
+    # oauth_application = models.OneToOneField(
+    #     Application,
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    # )
+
+    def __str__(self):
+        return self.name
 
 class DataFile(models.Model):
     '''
@@ -27,6 +41,7 @@ class DataFile(models.Model):
     data_file = models.FileField(upload_to='data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
     data_file_hash = models.CharField(max_length=35, unique=True)
     devices_captured = models.ManyToManyField(SmartHomeDevice)
+    data_capturing_device = models.ForeignKey(DataCapturingDevice, on_delete=models.PROTECT)
     processed = models.BooleanField()
     processed_file = models.FileField(upload_to='data-files-processed', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['txt'])])
     start_time = models.DateTimeField(null=True, blank=True)
