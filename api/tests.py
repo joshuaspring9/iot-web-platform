@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db.utils import IntegrityError
 from oauth2_provider.models import Application
 from .models import DataCapturingDevice, DataFile, SmartHomeDevice
 
@@ -28,3 +29,6 @@ class DataFileTestCase(TestCase):
 
     def test_data_file_name(self):
         self.assertTrue('blah' in str(self.data_file))
+
+    def test_data_file_duplicate_checker(self):
+        self.assertRaises(IntegrityError, DataFile.objects.create, data_file=SimpleUploadedFile(name='blah.pcap', content="another blank".encode()), data_capturing_device=self.capture_device, processed=True)
