@@ -74,7 +74,7 @@ def dashboard(request, data_file_id):
 
         dic['contents'] = contents
     
-    return render(request, 'dashboard/home.html', dic)
+    return render(request, 'dashboard/datafile.html', dic)
 
 @login_required
 def dashboard_list(request):

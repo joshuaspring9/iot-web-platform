@@ -4,32 +4,6 @@
 {% block title %}Home{% endblock %}
 
 {% block header %}
-<script type="text/javascript">
-    var labelNum = [];
-    var arr = []; 
-    var index =0;
-    //with debug on, this has no args
-    function Upload(arg) {
-        //debug only 
-       //var fileUpload = document.getElementById("fileUpload"); 
-        document.getElementById("loginMessage").innerText = "";
-       // var fileUpload = arg;
-
-        // var p = document.createTextNode(arg);
-        // var dvCSV = document.getElementById("dvCSV");
-        // dvCSV.innerHTML = "";
-        // dvCSV.appendChild(p);
-        arr[index] = (arg.match(/1/g) || []).length;
-        labelNum[index] = "";
-        index++;
-        arr[index] = (arg.match(/0/g) || []).length;
-        labelNum[index] = "";
-        writeGraph(arr,labelNum);
-
-    }
-  
-</script>
-  
 <link rel = "stylesheet" href="{% static 'pages/lstyle.css' %}">
 <style>
   .image{
@@ -76,15 +50,10 @@
     </div>
     {% include 'pages/topbar.html' %}
 <div id = "paragraph" align="center">
-    {% if processed is not None and processed == False %}
-      <h1 class="yellow">This data capture has not been processed yet.  Please check back again later.</h1><hr />
-    {% endif %}
-  
-
 
     {% if data_files %}
       <h1>The following data captures made on your home network are available for viewing:</h1>
-      <h4>(with the most recent appearing first)</h4>
+      <h4>(with the most recent uploads appearing first)</h4>
       <div class="center">
       <ol>
       {% for data_file in data_files %}
@@ -98,121 +67,10 @@
     <input type="file" id="fileUpload" />
     <input type="button" id="upload" value="Upload" onclick="Upload()" />
     <hr />-->
-    <div id="dvCSV">
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js">
-    </script>
-    <canvas id="myChart" width="20" height="20"></canvas>
-    <!--<img src="{% static 'pages/construction.png' %}"/> -->
-
-
-    {% if devices_captured %}
-      <h1>Devices present in this capture:</h1>
-      {% for device in devices_captured.all %}
-      <div class="device">
-        {% if device.image %}
-          <img class="image" src="{{device.image.url}}" />
-        {% else %}
-        <img class="image" src="{% static 'dashboard/generic_device.png' %}" />
-        {% endif %}
-        <div class="text">
-          <h3>{{device.name}}</h3>
-          <p>{{device.description}}</p>
-        </div>
-      </div>
-      {% endfor %}
-    {% endif %}
-    
-      {% if processed is not None %}
-      <h1>Capture Start Time:</h1>
-        <p>{% if start_time %}
-          {{start_time}}
-        {% else %}
-          Unavailable
-        {% endif %}</p>
-
-        <h1>Capture End Time:</h1>
-        <p>{% if end_time %}
-          {{end_time}}
-        {% else %}
-          Unavailable
-        {% endif %}</p>
-
-      {% endif %}
 
 
 </div>
 </div>
-
-<script>
-
-    function writeGraph(arr,labelNum){
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-    labels: ["This Capture"],
-    datasets: [{
-      label: 'Intrusions or Anomalous Activity',
-      data: [arr[0]],
-      backgroundColor: 'rgb(198, 13, 13)',
-  
-    }, {
-      label: 'Normal Activity',
-      data: [arr[1]],
-      backgroundColor: 'rgb(7, 17, 130)',
-  
-    }]
-  
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Intrusion Detection Graphical Interface',
-          fontSize: 16,
-          fontColor: '#000080',
-        },
-      scales: {
-     
-      xAxes: [{
-        scaleLabel: {
-         display: true,
-         labelString: '',
-         fontSize: 16,
-         fontColor: '#000080',
-       }
-     }, {
-        display: false,
-        ticks: {
-          fontSize: 16,
-          fontColor: '#000080',
-          autoSkip: false,
-            max: 4,
-        }
-      }],
-      yAxes: [{
-        scaleLabel: {
-         display: true,
-         labelString: 'Number of Packets',
-         fontSize: 16,
-         fontColor: '#000080',
-       },
-        ticks: {
-        fontSize: 16,
-        fontColor: '#000080',
-        beginAtZero:true
-        }
-      }]
-    }
-      }
-    });
-    }
-    {% if contents %}
-      Upload("{{contents}}")
-    {% endif %}
-  
-  </script>
-  
 
  {% endblock %}
 
