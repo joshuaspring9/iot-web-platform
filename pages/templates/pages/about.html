@@ -10,9 +10,10 @@
 
 {% block content %}
 <div id="header" align="center">
-    <div class="title">
-     <h1>About Us</h1>
+    
      {% if user.is_authenticated %}
+     <div class="title">
+    <h1>About Us</h1>
      <div class="profile-container">
             <div class="username">
                 Hi {% user_display user %}!
@@ -31,7 +32,9 @@
             </div>
         </div>
     </div>
-    {% endif %}
+    {% else %}
+        <h1>About Us</h1>
+        {% endif %}
      {% include 'pages/topbar.html' %}
 </div>
 <br>
