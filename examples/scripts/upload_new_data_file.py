@@ -1,3 +1,4 @@
+import sys
 import os
 import json
 import requests
@@ -28,7 +29,7 @@ class IOTWebPlatformAPI:
     def get_new_token(self):
         data = {
             'grant_type': 'client_credentials',
-            'scope': ['datafiles', 'devices']
+            'scope': 'datafiles',
         }
         response = requests.post(self.token_url, data=data, auth=(self.client_id, self.client_secret))
         if response.status_code >= 300:
@@ -36,7 +37,7 @@ class IOTWebPlatformAPI:
         else:
             response_dict = json.loads(response.text)
             if 'access_token' not in response_dict:
-                raise APIError("Failed to get a new access token, even though HTTP code inidicated success.  Response: " + response.text)
+                raise APIError("Failed to get a new access token, even though HTTP code indicated success.  Response: " + response.text)
             else:
                 self.token = response_dict['access_token']
                 f = open(self.token_file, 'w')
@@ -163,7 +164,7 @@ class IOTWebPlatformAPI:
             'Authorization': "Bearer " + self.token
         }
         response = requests.post(self.data_files_url, data=data, files=files, headers=headers)
-        if response.status_code != 200:
+        if response.status_code >= 300:
             if response.status_code == 401 and not is_retry:
                 # token may have expired, try to fetch another one
                 self.get_new_token()
@@ -174,8 +175,11 @@ class IOTWebPlatformAPI:
             print("Successfully uploaded data file.  Response was: " + response.text)
         
 try:
-    uploader = IOTWebPlatformAPI(CLIENT_ID, CLIENT_SECRET)
-    uploader.upload_data_file('test.pcap')
-    #print(uploader.get_capture_devices())
+    if len(sys.argv) != 2:
+        print("Please specify a single file to upload.")
+    else:
+        uploader = IOTWebPlatformAPI(CLIENT_ID, CLIENT_SECRET)
+        uploader.upload_data_file(sys.argv[1])
+        #print(uploader.get_capture_devices())
 except Exception as e:
     print(str(e))
