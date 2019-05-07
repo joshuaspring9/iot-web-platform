@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404, render
 from .forms import CustomUserCreationForm, UserProfileForm
@@ -80,3 +81,9 @@ def dashboard_list(request):
     return render(request, 'dashboard/home.html', {
             'data_files': DataFile.objects.all(),
         })
+
+class AccountView(LoginRequiredMixin, generic.TemplateView ):
+    """
+    Same as template view, but login is required
+    """
+    template_name = 'dashboard/account.html'
