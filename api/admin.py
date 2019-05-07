@@ -12,6 +12,10 @@ class DataFileAdmin(admin.ModelAdmin):
             obj.data_file_hash = form.cleaned_data['data_file_hash']
         obj.save()
 
+
+class DataCapturingDeviceAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
 admin.site.register(DataFile, DataFileAdmin)
 admin.site.register(SmartHomeDevice)
-admin.site.register(DataCapturingDevice)
+admin.site.register(DataCapturingDevice, DataCapturingDeviceAdmin)
