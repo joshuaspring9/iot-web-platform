@@ -38,7 +38,7 @@ class DataFile(models.Model):
     '''
     # Note that while only PCAP extensions, are allowed, ANY file can be renamed to .pcap and be accepted.
     # TODO: implement stricter file validation
-    data_file = models.FileField(upload_to='data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap'])])
+    data_file = models.FileField(upload_to='data-files', validators=[FileExtensionValidator(allowed_extensions=['pcap', 'csv'])])
     data_file_hash = models.CharField(max_length=35, unique=True)
     devices_captured = models.ManyToManyField(SmartHomeDevice)
     data_capturing_device = models.ForeignKey(DataCapturingDevice, on_delete=models.PROTECT)
