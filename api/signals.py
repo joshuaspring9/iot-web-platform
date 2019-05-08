@@ -1,13 +1,23 @@
 from django.db.models.signals import post_save, pre_save, post_delete
 from django.dispatch import receiver
+from django.core.files.base import ContentFile
 from .models import DataFile
 
 @receiver(post_save, sender=DataFile)
 def process_datafile(sender, instance, created, **kwargs):
     """Call an outside script whenever a DataFile is created to process the file."""
-    if created:
+    if created and not instance.processed:
         # this is where we want to call the ML sub-team's script
-        pass
+        import sys
+        sys.path.insert(0, '../iot-intrusion-detection/Machine Learning Subteam')
+        sys.path.insert(0, '../iot-intrusion-detection/Machine Learning Subteam/RandomForestRegressor')
+        import RandomForestRegressor.trainPredictFormat
+        trainer = RandomForestRegressor.trainPredictFormat.trainAndPredict()
+        trainer.load_model_file('../iot-intrusion-detection/Machine Learning Subteam/RandomForestRegressor/iot_model.sav')
+        predictions = trainer.make_prediction_on_file(instance.data_file.path, True)
+        instance.processed_file.save('results_datafile_id' + str(instance.id) +'.txt', ContentFile(str(predictions)))
+        instance.processed = True
+        instance.save()
 
 @receiver(pre_save, sender=DataFile)
 def populate_datafile_hash(sender, instance, **kwargs):
