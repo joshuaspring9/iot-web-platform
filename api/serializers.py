@@ -22,7 +22,8 @@ class SmartHomeDeviceSerializer(serializers.HyperlinkedModelSerializer):
 class DataCapturingDeviceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DataCapturingDevice
-        exclude = ('oauth_application',)
+        fields = '__all__'
+        #exclude = ('oauth_application',)
 
 class DataFileSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
