@@ -47,7 +47,7 @@
 }
 nav {
     text-align: center;
-    
+
 }
 .center > ul {
   display: inline-block;
@@ -68,6 +68,7 @@ nav {
 }
 
 #topbar{
+  background-color: gray;
   margin:20pt;
   display: flex;
   flex-flow:row nowrap;
@@ -78,6 +79,18 @@ nav {
 
 #topbar a {
   font-size: 2em;
+  text-decoration: none;
+  color: #4255a5;
+  padding: 10px;
+  font-family: sans-serif;
+  transition: 0.5s;
+}
+
+#topbar a:hover {
+  background-color: #4255a5;
+  color: #b5b5b5;
+  padding-top: 6px;
+  padding-bottom: 14px;
 }
 
 #navbar{
@@ -114,13 +127,13 @@ nav {
 }
 
 body {
-  background: #808080; 
+  background: #808080;
   background: -webkit-linear-gradient(right, #808080, #778899);
   background: -moz-linear-gradient(right, #808080, #778899);
   background: -o-linear-gradient(right, #808080,#778899);
   background: linear-gradient(left, #808080,#778899);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .center {
