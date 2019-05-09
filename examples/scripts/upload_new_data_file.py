@@ -109,7 +109,7 @@ class IOTWebPlatformAPI:
             for i in range(len(smart_devices)):
                 print(str(i+1) + ". " + smart_devices[i]['name'])
             print()
-            chosen_devices = input("Enter the numbers of the devices separated by spaces: ")
+            chosen_devices = input("Enter the numbers of the devices separated by spaces: ").split(' ')
             print()
             if len(chosen_devices) == 0:
                 print("Error: You did not enter any devices. Please try again.\n")
